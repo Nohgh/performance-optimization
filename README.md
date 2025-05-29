@@ -1,4 +1,5 @@
 # 목차
+
 - [목차](#목차)
 - [프론트엔드 배포 파이프라인](#프론트엔드-배포-파이프라인)
 - [주요 링크](#주요-링크)
@@ -26,7 +27,6 @@
     - [토스에서 처리하는 브라우저 캐시에 대한 아티클을 보고 느낀점](#토스에서-처리하는-브라우저-캐시에-대한-아티클을-보고-느낀점)
 - [질문](#질문)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # 프론트엔드 배포 파이프라인
 
