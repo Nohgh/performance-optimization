@@ -1,7 +1,38 @@
+# 목차
+- [목차](#목차)
+- [프론트엔드 배포 파이프라인](#프론트엔드-배포-파이프라인)
+- [주요 링크](#주요-링크)
+  - [](#)
+- [워크플로우 프로세스](#워크플로우-프로세스)
+  - [on 섹션](#on-섹션)
+  - [jobs - deploy](#jobs---deploy)
+- [CDN과 성능최적화](#cdn과-성능최적화)
+    - [AS-IS: s3를 통한 정적 파일 배포](#as-is-s3를-통한-정적-파일-배포)
+    - [TO-BE: cloudFront(CDN) 적용 후](#to-be-cloudfrontcdn-적용-후)
+    - [비교분석](#비교분석)
+- [브라우저의 캐시](#브라우저의-캐시)
+  - [chat gpt가 정리한 내용](#chat-gpt가-정리한-내용)
+    - [✅ S3의 응답 속도가 반복 요청에서 단축되는 이유](#-s3의-응답-속도가-반복-요청에서-단축되는-이유)
+    - [✅ 비교 요약](#-비교-요약)
+  - [토스의 기술 블로그"웹 서비스 캐시 똑똑하게 다루기"를 보고 정리한 내용](#토스의-기술-블로그웹-서비스-캐시-똑똑하게-다루기를-보고-정리한-내용)
+    - [캐시의 생명 주기](#캐시의-생명-주기)
+    - [캐시의 유효 기간: max-age](#캐시의-유효-기간-max-age)
+    - [캐시의 유효 기간이 지나기 전](#캐시의-유효-기간이-지나기-전)
+    - [위의 "서버에 요청을 보내지 않고"라는 말의 의미](#위의-서버에-요청을-보내지-않고라는-말의-의미)
+    - [CDN Invalidation](#cdn-invalidation)
+    - [Cache-Control](#cache-control)
+    - [s-maxage](#s-maxage)
+    - [토스는 Cache-Control을 어떻게 처리하나](#토스는-cache-control을-어떻게-처리하나)
+    - [토스에서 처리하는 브라우저 캐시에 대한 아티클을 보고 느낀점](#토스에서-처리하는-브라우저-캐시에-대한-아티클을-보고-느낀점)
+- [질문](#질문)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # 프론트엔드 배포 파이프라인
 
 ![alt text](image.png)
   # 주요 링크
+
   - s3버킷 웹사이트 엔드포인트: http://hanghae-infra-practice.s3-website.ap-northeast-2.amazonaws.com
   - cloudFront 배포 도메인 이름: https://d38roiv4jc0u1e.cloudfront.net/
 <br/><br/><br/>
@@ -73,27 +104,6 @@ Ubuntu 최신 버전 환경에서 이 작업을 실행합니다.
 
 <br/><br/><br/>
 
-  # 학습한 개념
-  - **s3**
-    - 정적 파일을 저장하는 스포리지 서비스입니다.
-    - 퍼블릭 액세스를 설정하여 웹호스팅이 가능합니다.
-  - **cloudfront와  cdn**
-    - cloudFront는 aws에서 제공하는 cdn입니다.
-    - 전 세계 엣지 로케이션을 통해 콘텐츠를 더 빠르게 전송합니다.
-    - 캐시 설정, 만료 시간 조절이 가능합니다.
-  - **github actions과 cicd**
-    - github actions는 ci/cd를 구현하기 위한 도구입니다.
-    - ci/cd의 개념: 
-      - ci(continuous integration): 지속적 통합, 코드 변경시 자동으로 빌드 및 테스트를 수행한다.
-      - cd(continuous deployment): 지속적 배포, 테스트 통과시 자동으로 배포한다.
-  - **aws의 권한과 IAM**
-    - IAM: 사용자/역할/정책을 통해 자원의 접근을 제어합니다.
-    - 정책(policy): json 형식으로 권한을 정의합니다.
-
-  - **aws CLI**
-    - aws 서비스 제어를 위한 커맨드라인 인터페이스
-
-<br/><br/><br/>
 
   # CDN과 성능최적화
   > Next.js를 처음 만들면 생성되는 페이지를 배포하여 테스트합니다.
